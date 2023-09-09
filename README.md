@@ -8,6 +8,9 @@ This section defines specific terms or placeholders that are used throughout one
 - 3.1. "**FILE.txt**" or "**FILE**`{N}`**.txt**" means the files needed to run the command/script according to its context and needs.
 - 4.1. "**OUT.txt**" or "**OUT**`{N}`**.txt**" means the file as the target storage result will be the command that is executed.
 
+
+
+
 ---
 
 ### Local File Inclusion
@@ -82,6 +85,8 @@ assetfinder --subs-only HOST | gau | egrep -v '(.css|.png|.jpeg|.jpg|.svg|.gif|.
 cat FILE.js | grep -oh "\"\/[a-zA-Z0-9_/?=&]*\"" | sed -e 's/^"//' -e 's/"$//' | sort -u
 ```
 
+
+
 ### Get CIDR & Org Information from Target Lists
 
 ```bash
@@ -89,17 +94,23 @@ for HOST in $(cat HOSTS.txt);do echo $(for ip in $(dig a $HOST +short); do whois
 one | uniq); done
 ```
 
+
+
 ### Get Subdomains from RapidDNS.io
 
 ```bash
 curl -s "https://rapiddns.io/subdomain/$1?full=1#result" | grep "<td><a" | cut -d '"' -f 2 | grep http | cut -d '/' -f3 | sed 's/#results//g' | sort -u
 ```
 
+
+
 ### Get Subdomains from BufferOver.run> 
 
 ```bash
 curl -s https://dns.bufferover.run/dns?q=.HOST.com | jq -r .FDNS_A[] | cut -d',' -f2 | sort -u
 ```
+
+
 
 ```bash
 export domain="HOST"; curl "https://tls.bufferover.run/dns?q=$domain" | jq -r .Results'[]' | rev | cut -d ',' -f1 | rev | sort -u | grep "\.$domain"
@@ -111,11 +122,16 @@ export domain="HOST"; curl "https://tls.bufferover.run/dns?q=$domain" | jq -r .R
 curl -s "https://riddler.io/search/exportcsv?q=pld:HOST" | grep -Po "(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | sort -u 
 ```
 
+
+
 ### Get Subdomains from VirusTotal
 
 ```bash
 curl -s "https://www.virustotal.com/ui/domains/HOST/subdomains?limit=40" | grep -Po "((http|https):\/\/)?(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | sort -u
 ```
+
+
+
 
 ### Get Subdomain with cyberxplore
 
@@ -130,11 +146,15 @@ curl https://subbuster.cyberxplore.com/api/find?domain=HOST -s | grep -Po "(([\w
 curl -s "https://certspotter.com/api/v1/issuances?domain=HOST&include_subdomains=true&expand=dns_names" | jq .[].dns_names | grep -Po "(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | sort -u 
 ```
 
+
+
 ### Get Subdomains from Archive
 
 ```bash
 curl -s "http://web.archive.org/cdx/search/cdx?url=*.HOST/*&output=text&fl=original&collapse=urlkey" | sed -e 's_https*://__' -e "s/\/.*//" | sort -u
 ```
+
+
 
 ### Get Subdomains from JLDC
 
@@ -142,11 +162,15 @@ curl -s "http://web.archive.org/cdx/search/cdx?url=*.HOST/*&output=text&fl=origi
 curl -s "https://jldc.me/anubis/subdomains/HOST" | grep -Po "((http|https):\/\/)?(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | sort -u
 ```
 
+
+
 ### Get Subdomains from securitytrails
 
 ```bash
 curl -s "https://securitytrails.com/list/apex_domain/HOST" | grep -Po "((http|https):\/\/)?(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | grep ".HOST" | sort -u
 ```
+
+
 
 ### Bruteforcing Subdomain using DNS Over 
 
