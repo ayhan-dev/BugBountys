@@ -9,7 +9,7 @@ This section defines specific terms or placeholders that are used throughout one
 - 4.1. "**OUT.txt**" or "**OUT**`{N}`**.txt**" means the file as the target storage result will be the command that is executed.
 
 
-
+[telegram](t.me/ayhan_gy)
 
 ---
 
